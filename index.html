@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Weather Hub</title>
+
+        <!-- todo css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- todo JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/feather-icons"></script>
+    </head>
+    <body class="h-100">
+        <header></header>
+        <main class="h-100">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3 search">
+                                    <label for="lokasi" class="form-label">Lokasi</label>
+                                    <input type="text" name="lokasi" id="lokasi" class="form-control mb-3 lokasi" placeholder="Lokasi" />
+                                    <button class="btn btn-primary cek" id="cek">Cek</button>
+                                </div>
+                                <div class="text-center">
+                                    <div id="kota"></div>
+                                    <div id="temp"></div>
+                                    <div id="humidy"></div>
+                                    <div id="wind"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+
+        <!-- todo JS -->
+        <script>
+            feather.replace();
+        </script>
+        <script>
+            const apiKey = "05f85ed9cd6d48d7bd263915232510";
+            const apiUrl = "https://api.weatherapi.com/v1/current.json?key=";
+            const searchBox = document.querySelector(".lokasi"); // Ubah pemilihan ini
+            const btn = document.querySelector(".cek");
+
+            async function checkWeather(city) {
+                const response = await fetch(apiUrl + apiKey + `&q=` + city.value + `&aqi=no`); // Ubah city menjadi city.value
+                var data = await response.json();
+
+                console.log(data);
+
+                document.getElementById("kota").innerHTML = data.location.name + `, ` + data.location.region + `, ` + data.location.country;
+                document.getElementById("temp").innerHTML = Math.round(data.current.temp_c) + "°C";
+                document.getElementById("humidy").innerHTML = data.current.humidity + "%";
+                document.getElementById("wind").innerHTML = data.current.wind_kph + " km/h";
+            }
+
+            btn.addEventListener("click", () => {
+                checkWeather(searchBox);
+            });
+        </script>
+    </body>
+</html>
