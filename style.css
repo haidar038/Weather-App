@@ -1,13 +1,38 @@
+* {
+    font-family: "Open Sans";
+}
+
 html {
     height: 100%;
 }
 
 body {
-    background-image: url("bg.jpg");
+    /* background-image: url("bg.jpg");
     background-position: center;
-    background-repeat: no-repeat;
     background-clip: border-box;
     background-attachment: fixed;
     background-size: cover;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px); */
+    min-height: 100vh; /* Atur tinggi body sesuai dengan viewport height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.title {
+    font-family: "Pacifico";
+}
+
+.icon {
+    height: 100px;
+}
+
+.card {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right top, #1f4681, #225b9b, #2271b6, #1e88d0, #12a0eb);
+    backdrop-filter: blur(5px); /* Efek blur pada latar belakang */
+    border: 0;
 }
