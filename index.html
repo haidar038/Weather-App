@@ -17,13 +17,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/feather-icons"></script>
     </head>
-    <body class="h-100">
+    <body class="h-100 bg-dark">
         <header></header>
         <main class="">
             <div class="container">
                 <div class="row d-flex justify-content-center pt-5">
                     <div class="col-6">
-                        <h1 class="title text-center mb-5">My Weather Hub</h1>
+                        <h1 class="title text-center mb-5 text-light">My Weather Hub</h1>
                         <div class="card p-2 rounded-4 text-light">
                             <div class="card-body">
                                 <div class="mb-3 input-group search">
@@ -33,15 +33,15 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6 text-center">
-                                        <img src="" alt="" class="icon" />
-                                        <div class="weather"></div>
+                                    <div class="col-4 text-center">
+                                        <img src="icons/day/slight_touch_happyday.png" alt="" class="icon" />
+                                        <div class="weather">Cerah</div>
                                     </div>
-                                    <div class="col-6">
-                                        <div id="kota"></div>
-                                        <div id="temp"></div>
-                                        <div id="humidy"></div>
-                                        <div id="wind"></div>
+                                    <div class="col-8 d-flex flex-column justify-content-center">
+                                        <div><i class="me-3" data-feather="map-pin"></i><span id="kota">Ternate</span></div>
+                                        <div><i class="me-3" data-feather="thermometer"></i><span id="temp">20</span></div>
+                                        <div><i class="me-3" data-feather="droplet"></i><span id="humidy"></span></div>
+                                        <div><i class="me-3" data-feather="wind"></i><span id="wind"></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,11 @@
                 </div>
             </div>
         </main>
-        <footer class="text-center py-3">
+        <footer class="text-center py-3 text-light">
+            <div class="d-flex flex-column">
+                <p>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API" class="link-light">WeatherAPI.com</a></p>
+            </div>
+            <div class="d-flex flex-column opacity-50"><small>&copy; 2023 M. Khaidar | All rights reserved</small></div>
             <!-- <a href="https://www.weatherapi.com/" title="Free Weather API"><img src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png" alt="Weather data by WeatherAPI.com" border="0" /></a> -->
         </footer>
 
@@ -58,182 +62,7 @@
         <script>
             feather.replace();
         </script>
-        <script>
-            const apiKey = "05f85ed9cd6d48d7bd263915232510";
-            const apiUrl = "https://api.weatherapi.com/v1/current.json?key=";
-            const searchBox = document.querySelector(".lokasi"); // Ubah pemilihan ini
-            const btn = document.querySelector(".cek");
-            const icon = document.querySelector(".icon");
-            const weather = document.querySelector(".weather");
-
-            async function checkWeather(city) {
-                const response = await fetch(apiUrl + apiKey + `&q=` + city.value + `&aqi=no`); // Ubah city menjadi city.value
-                var data = await response.json();
-
-                console.log(data);
-
-                document.getElementById("kota").innerHTML = data.location.name + `, ` + data.location.region + `, ` + data.location.country;
-                document.getElementById("temp").innerHTML = "Suhu : " + Math.round(data.current.temp_c) + " °C";
-                document.getElementById("humidy").innerHTML = "Kelembaban : " + data.current.humidity + "%";
-                document.getElementById("wind").innerHTML = "Kecepatan Angin : " + data.current.wind_kph + " km/h";
-                const weather_info = data.current.condition.text;
-
-                if (data.current.condition.text == "Clear") {
-                    icon.src = "icons/day/slight_touch_happyday.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Sunny") {
-                    icon.src = "icons/day/slight_touch_happyday.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Cloudy") {
-                    icon.src = "icons/day/cloudy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Partly cloudy") {
-                    icon.src = "icons/day/partly_cloudy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Overcast") {
-                    icon.src = "icons/day/cloudy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Mist") {
-                    icon.src = "icons/day/mist.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy rain possible") {
-                    icon.src = "icons/day/partly_cloudy_rain_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy snow possible") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy sleet possible") {
-                    icon.src = "icons/day/partly_cloudy_sleet_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy freezing drizzle possible") {
-                    icon.src = "icons/day/patchy_freezing_drizzle_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Thundery outbreaks possible") {
-                    icon.src = "icons/day/partly_day_storm.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Blowing snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Blizzard") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Fog") {
-                    icon.src = "icons/day/mist.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Freezing fog") {
-                    icon.src = "icons/day/mist.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light drizzle") {
-                    icon.src = "icons/day/light_drizzle.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light rain") {
-                    icon.src = "icons/day/partly_cloudy_rain_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light rain") {
-                    icon.src = "icons/day/light_drizzle.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate rain at times") {
-                    icon.src = "icons/day/light_drizzle.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate rain") {
-                    icon.src = "icons/day/light_drizzle.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Heavy rain at times") {
-                    icon.src = "icons/day/partly_cloudy_rain_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Heavy rain") {
-                    icon.src = "icons/day/rainy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light freezing rain") {
-                    icon.src = "icons/day/light_freezing_rain.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy freezing rain") {
-                    icon.src = "icons/day/light_freezing_rain.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light sleet") {
-                    icon.src = "icons/day/patchy_freezing_drizzle_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy sleet") {
-                    icon.src = "icons/day/patchy_freezing_drizzle_possible.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy moderate snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy moderate snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy heavy snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Heavy snow") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Ice pellets") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy rain shower") {
-                    icon.src = "icons/day/rainy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Torrential rain shower") {
-                    icon.src = "icons/day/rainy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light sleet showers") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light sleet showers") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy sleet showers") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light snow showers") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy snow showers") {
-                    icon.src = "icons/day/snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Light showers of ice pellets") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy showers of ice pellets") {
-                    icon.src = "icons/day/ice_pellets.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light rain with thunder") {
-                    icon.src = "icons/day/partly_day_storm_rain.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light rain with thunder") {
-                    icon.src = "icons/day/partly_day_storm.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Patchy light snow with thunder") {
-                    icon.src = "icons/day/thnderstorm_snowy.png";
-                    weather.innerHTML = weather_info;
-                } else if (data.current.condition.text == "Moderate or heavy snow with thunder") {
-                    icon.src = "icons/day/thnderstorm_snowy.png";
-                    weather.innerHTML = weather_info;
-                }
-            }
-
-            // Fungsi ini akan memeriksa apakah tombol "Enter" (kode 13) ditekan.
-            function handleKeyPress(event) {
-                if (event.key === "Enter") {
-                    checkWeather(searchBox);
-                }
-            }
-
-            searchBox.addEventListener("keypress", handleKeyPress);
-
-            btn.addEventListener("click", () => {
-                checkWeather(searchBox);
-            });
-        </script>
+        <script src=""></script>
+        <script async src="main.js"></script>
     </body>
 </html>
