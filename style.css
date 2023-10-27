@@ -23,7 +23,7 @@ footer {
 }
 
 .title {
-    font-family: "Pacifico";
+    font-weight: bold;
 }
 
 .icon {
@@ -32,7 +32,26 @@ footer {
 
 .card {
     background-repeat: no-repeat;
-    background-image: linear-gradient(to right top, #1f4681, #225b9b, #2271b6, #1e88d0, #12a0eb);
-    backdrop-filter: blur(5px); /* Efek blur pada latar belakang */
+    background-image: url("background/day.svg");
+    background-size: cover;
+    background-position: center;
     border: 0;
+    position: relative; /* Diperlukan untuk menentukan lapisan tambahan */
+
+}
+
+.card::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5); /* Ubah 0.75 menjadi tingkat transparansi yang Anda inginkan (dari 0 hingga 1) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+}
+
+.card .card-body {
+    position: relative; /* Memastikan elemen card-body di atas lapisan tambahan */
+    z-index: 1; /* Mengatur elemen card-body di atas lapisan tambahan */
 }

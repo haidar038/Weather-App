@@ -10,21 +10,51 @@
         <link rel="stylesheet" href="style.css" />
 
         <!-- todo Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Urbanist" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 
         <!-- todo JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/feather-icons"></script>
     </head>
-    <body class="h-100 bg-dark">
-        <header></header>
+    <body class="h-100">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container">
+                    <a class="navbar-brand title text-danger" href="#">My Weather Hub</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
         <main class="">
             <div class="container">
                 <div class="row d-flex justify-content-center pt-5">
-                    <div class="col-6">
-                        <h1 class="title text-center mb-5 text-light">My Weather Hub</h1>
-                        <div class="card p-2 rounded-4 text-light">
+                    <div class="col-12">
+                        <div class="card p-2 rounded-4 shadow-lg">
                             <div class="card-body">
                                 <div class="mb-3 input-group search">
                                     <!-- <label for="lokasi" class="form-label">My Weather Hub</label> -->
@@ -33,15 +63,19 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4 text-center">
-                                        <img src="icons/day/slight_touch_happyday.png" alt="" class="icon" />
-                                        <div class="weather">Cerah</div>
+                                    <div class="col-lg-2 col-sm-12 text-center">
+                                        <img src="" alt="" class="icon" />
+                                        <div class="weather"></div>
                                     </div>
-                                    <div class="col-8 d-flex flex-column justify-content-center">
-                                        <div><i class="me-3" data-feather="map-pin"></i><span id="kota">Ternate</span></div>
-                                        <div><i class="me-3" data-feather="thermometer"></i><span id="temp">20</span></div>
-                                        <div><i class="me-3" data-feather="droplet"></i><span id="humidy"></span></div>
-                                        <div><i class="me-3" data-feather="wind"></i><span id="wind"></span></div>
+                                    <div class="col-lg-10 col-sm-12 mb-sm-3 mb-lg-0 d-flex flex-column justify-content-center">
+                                        <div><span id="kota"></span></div>
+                                        <div><span id="temp"></span></div>
+                                        <div><span id="humidy"></span></div>
+                                        <div><span id="wind"></span></div>
+                                        <!-- <div><i class="me-3" data-feather="map-pin"></i><span id="kota">Ternate</span></div> -->
+                                        <!-- <div><i class="me-3" data-feather="thermometer"></i><span id="temp">20</span></div> -->
+                                        <!-- <div><i class="me-3" data-feather="droplet"></i><span id="humidy"></span></div> -->
+                                        <!-- <div><i class="me-3" data-feather="wind"></i><span id="wind"></span></div> -->
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +84,9 @@
                 </div>
             </div>
         </main>
-        <footer class="text-center py-3 text-light">
+        <footer class="text-center py-3">
             <div class="d-flex flex-column">
-                <p>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API" class="link-light">WeatherAPI.com</a></p>
+                <p>Powered by <a href="https://www.weatherapi.com/" title="Free Weather API" class="link-primary">WeatherAPI.com</a></p>
             </div>
             <div class="d-flex flex-column opacity-50"><small>&copy; 2023 M. Khaidar | All rights reserved</small></div>
             <!-- <a href="https://www.weatherapi.com/" title="Free Weather API"><img src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png" alt="Weather data by WeatherAPI.com" border="0" /></a> -->
